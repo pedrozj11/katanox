@@ -9,16 +9,34 @@ use Illuminate\Http\Request;
 
 class RoomController extends Controller
 {
+    /**
+     * Get rooms.
+     *
+     * Retrieve all rooms
+     *
+     */
     public function index(Request $request)
     {
         return RoomResource::collection(Room::paginate());
     }
 
+     /**
+     * Get room.
+     *
+     * Get a single room by id
+     *
+     */
     public function show(Request $request)
     {
         return new RoomResource(Room::findOrFail($request->route('id')));
     }
 
+     /**
+     * Room creation.
+     *
+     * Create a room
+     *
+     */
     public function store(Request $request)
     {
         $room = new Room();
@@ -36,6 +54,12 @@ class RoomController extends Controller
         ]);
     }
 
+     /**
+     * Edit room.
+     *
+     * Edit a room with id
+     *
+     */
     public function edit(Request $request)
     {
         $room = Room::find($request->route('id'));
@@ -53,6 +77,12 @@ class RoomController extends Controller
         ]);
     }
 
+     /**
+     * Delete room.
+     *
+     * Delete a room by id
+     *
+     */
     public function delete(Request $request)
     {
         $room = Room::find($request->get('id'));

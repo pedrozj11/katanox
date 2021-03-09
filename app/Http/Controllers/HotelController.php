@@ -9,16 +9,34 @@ use Illuminate\Http\Request;
 
 class HotelController extends Controller
 {
+    /**
+     * Get hotels.
+     *
+     * Retrieve all hotels
+     *
+     */
     public function index(Request $request)
     {
         return HotelResource::collection(Hotel::paginate());
     }
 
+    /**
+     * Get hotel.
+     *
+     * Get a single hotel by id
+     *
+     */
     public function show(Request $request)
     {
         return new HotelResource(Hotel::findOrFail($request->route('id')));
     }
 
+    /**
+     * Room creation.
+     *
+     * Create a hotel
+     *
+     */
     public function store(Request $request)
     {
         $hotel = new Hotel();
@@ -37,7 +55,12 @@ class HotelController extends Controller
         ]);
     }
 
-    
+    /**
+     * Edit hotel.
+     *
+     * Edit a hotel with id
+     *
+     */
     public function edit(Request $request)
     {
         $hotel = Hotel::find($request->route('id'));
@@ -48,13 +71,19 @@ class HotelController extends Controller
         $hotel->stars = $request->get('stars');
         
         $hotel->save();
-        
+
         return response()->json([
             'id' => $hotel->id,
             'message' => 'Hotel successfully edited.'
         ]);
     }
 
+    /**
+     * Delete hotel.
+     *
+     * Delete a hotel by id
+     *
+     */
     public function delete(Request $request)
     {
         $hotel = Hotel::find($request->get('id'));
