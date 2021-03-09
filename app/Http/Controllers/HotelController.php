@@ -21,22 +21,47 @@ class HotelController extends Controller
 
     public function store(Request $request)
     {
-        $todo = new Hotel();
-        $todo->text = $request->get('text');
-        $todo->save();
+        $hotel = new Hotel();
+
+        $hotel->name = $request->get('name');
+        $hotel->address = $request->get('address');
+        $hotel->phone = $request->get('phone');
+        $hotel->city = $request->get('city');
+        $hotel->stars = $request->get('stars');
+
+        $hotel->save();
 
         return response()->json([
-            'message' => 'Room successfully created.'
+            'id' => $hotel->id,
+            'message' => 'Hotel successfully created.'
+        ]);
+    }
+
+    
+    public function edit(Request $request)
+    {
+        $hotel = Hotel::find($request->route('id'));
+        $hotel->name = $request->get('name');
+        $hotel->address = $request->get('address');
+        $hotel->phone = $request->get('phone');
+        $hotel->city = $request->get('city');
+        $hotel->stars = $request->get('stars');
+        
+        $hotel->save();
+        
+        return response()->json([
+            'id' => $hotel->id,
+            'message' => 'Hotel successfully edited.'
         ]);
     }
 
     public function delete(Request $request)
     {
-        $todo = Hotel::find($request->get('id'));
-        $todo->delete();
+        $hotel = Hotel::find($request->get('id'));
+        $hotel->delete();
 
         return response()->json([
-            'message' => 'Room successfully deleted.'
+            'message' => 'Hotel successfully deleted.'
         ]);
     }
 }

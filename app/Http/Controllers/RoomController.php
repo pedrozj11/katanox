@@ -21,19 +21,42 @@ class RoomController extends Controller
 
     public function store(Request $request)
     {
-        $todo = new Room();
-        $todo->text = $request->get('text');
-        $todo->save();
+        $room = new Room();
 
+        $room->number = $request->get('number');
+        $room->beds = $request->get('beds');
+        $room->booked = $request->get('booked');
+        $room->hotel_id = $request->get('hotel_id');
+
+        $room->save();
+        
         return response()->json([
+            'id' => $room->id,
             'message' => 'Room successfully created.'
+        ]);
+    }
+
+    public function edit(Request $request)
+    {
+        $room = Room::find($request->route('id'));
+
+        $room->number = $request->get('number');
+        $room->beds = $request->get('beds');
+        $room->booked = $request->get('booked');
+        $room->hotel_id = $request->get('hotel_id');
+
+        $room->save();
+        
+        return response()->json([
+            'id' => $room->id,
+            'message' => 'Room successfully edited.'
         ]);
     }
 
     public function delete(Request $request)
     {
-        $todo = Room::find($request->get('id'));
-        $todo->delete();
+        $room = Room::find($request->get('id'));
+        $room->delete();
 
         return response()->json([
             'message' => 'Room successfully deleted.'

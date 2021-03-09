@@ -23,9 +23,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('room', [RoomController::class, 'index']);
 Route::get('room/{id}', [RoomController::class, 'show']);
 Route::post('room', [RoomController::class, 'store']);
+Route::put('room/{id}', [RoomController::class, 'edit']);
 Route::delete('room/{id}', [RoomController::class, 'delete']);
 
 Route::get('hotel', [HotelController::class, 'index']);
 Route::get('hotel/{id}', [HotelController::class, 'show']);
 Route::post('hotel', [HotelController::class, 'store']);
+Route::put('hotel/{id}', [HotelController::class, 'edit']);
 Route::delete('hotel/{id}', [HotelController::class, 'delete']);
