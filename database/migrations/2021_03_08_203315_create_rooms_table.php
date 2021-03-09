@@ -17,6 +17,7 @@ class CreateRoomsTable extends Migration
             $table->id();
             $table->integer('number');
             $table->integer('beds');
+            $table->float('price');
             $table->boolean('booked');
             $table->unsignedBigInteger('hotel_id');
             $table->foreign('hotel_id')->references('id')->on('hotels');

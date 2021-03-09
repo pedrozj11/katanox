@@ -25,6 +25,7 @@ class RoomFactory extends Factory
         return [
             'number'=> $this->faker->unique()->randomNumber(5),
             'beds'=> $this->faker->numberBetween(1,4),
+            'price'=> $this->faker->numberBetween(1, 100),
             'booked'=> $this->faker->boolean(),
             'hotel_id'=> Hotel::factory(),
         ];
