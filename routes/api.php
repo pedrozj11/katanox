@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\HotelController;
+use App\Http\Controllers\RoomController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +19,13 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('room', [RoomController::class, 'index']);
+Route::get('room/{id}', [RoomController::class, 'show']);
+Route::post('room', [RoomController::class, 'store']);
+Route::delete('room/{id}', [RoomController::class, 'delete']);
+
+Route::get('hotel', [HotelController::class, 'index']);
+Route::get('hotel/{id}', [HotelController::class, 'show']);
+Route::post('hotel', [HotelController::class, 'store']);
+Route::delete('hotel/{id}', [HotelController::class, 'delete']);
