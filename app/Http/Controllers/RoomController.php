@@ -55,7 +55,7 @@ class RoomController extends Controller
 
         $room->number = $request->get('number');
         $room->beds = $request->get('beds');
-        $room->booked = $request->get('booked');
+        $room->price = $request->get('price');
         $room->hotel_id = $request->get('hotel_id');
 
         $room->save();
@@ -84,7 +84,7 @@ class RoomController extends Controller
         }
         $room->number = $request->get('number');
         $room->beds = $request->get('beds');
-        $room->booked = $request->get('booked');
+        $room->price = $request->get('price');
         $room->hotel_id = $request->get('hotel_id');
 
         $room->save();
